@@ -1,0 +1,16 @@
+Создание
+
+fill()
+from()
+of()
+reverse()
+slice()
+splice()
+includes()
+indexOf()
+every()
+some()
+concat()
+filter()
+join()
+reduceRight()

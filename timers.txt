@@ -1,0 +1,30 @@
+приоритет
+  синхронные колбеки
+  process.nextTick()
+  setTimeout
+  setInterval
+  setImmediate
+  асинхронные колбеки
+
+require('timers')
+
+setTimeout
+clearTimeout
+setInterval
+clearInterval
+setImmediate
+clearImmediate
+
+ref
+unref
+
+EE
+  on
+  emit
+  once
+  clear() clear(name)
+  count(name) количество обработчиков на событии
+  remove()
+  listeners() отдает копию обработчики событий
+  names отдает ключи events
+
