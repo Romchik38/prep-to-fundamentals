@@ -1,0 +1,48 @@
+1 объект от объекта
+  obj__proto__ = obj2
+    obj2.__proto__ = Object.prototype
+      Object.prototype.__proto__ = null
+        null
+
+2. Объект от конструктора прототипа
+  - constructor
+    - статические методы
+    - prototype (на свой прототип)
+    - __proto__ (ссылается на Function.prototype)
+  - prototype
+    - метода прототипа
+    - constructor (на свой  конструктор)
+    - __proto__ (ссылается на Object.prototype)
+
+    Function.prototype:
+      - хранит методы call, apply, bind
+      - через __proto__ ссылается на Object.prototype
+
+    Object.prototype:
+      - хранит методы toString(), valueOf()
+      - через __proto__ ссылается на null
+
+    Цепочта прототипов через __proto:
+      point ->  Point.prototype -> Object.prototype -> null
+
+3. Экземпляр от класса
+   Тоже самое что и объект от конструктора прототипа.
+
+4. Один класс наследует от другого, а потом экземпляр наследует от класса
+    - Class1 - наследник, Class2 - предок
+    - Через Object.setPrototypeOf(Class1.prototype, Class2.prototype)
+    сцепляются Class1.prototype.__proto__ и Class2.prototype.
+    - Другими словами первому классу убираем ссылку на Object.prototype и даем
+    Class2.prototype. И тогда 1й будет выдеть методы 2-го
+    - все сводится к патчу __proto__ у Class1.prototype
+      Class1.prptptype__proto = Class2.prototype
+5. Extends, тоже самое что и №4, кроме некоторых отличий.
+    Если у №4 Class1.__proto__ ссылалось на Function.prototype,
+    то у extends Class1.__proto_ = Class2.
+    Выглядит это так:
+      - Class1.prototype.__proto__ = Class2.prototype
+      - Class1.__proto__ = Class2
+    Другими словами - прототип на прототив, конструктор на конструктора
+    Самый последний класс будет ссылаться уже как и раньше на function.prototype,
+    чтобы у классов были методы call, apply, bind
+    
